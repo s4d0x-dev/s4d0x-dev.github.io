@@ -3,10 +3,18 @@ const username = "s4d0x-dev";
 const featuredRepos = [
   "tabaar_numa",
   "ganjena",
-  "safebox",
-  "keepandroidopen.github.io",
+  "SafeBox",
   "LOCKit_Decryptor"
 ];
+
+
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("overlay");
+
+  menu.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
 
 function openGitHub() {
   window.open(`https://github.com/${username}`, "_blank");

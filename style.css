@@ -46,6 +46,8 @@ body::before {
   background: rgba(26,34,56,0.5);
   backdrop-filter: blur(12px);
   border-radius: 14px;
+  z-index: 9999;
+  /* z-index: 1000; 🔥 IMPORTANT FIX */
 }
 
 .menu a {
@@ -116,6 +118,8 @@ body::before {
   background: rgba(26,34,56,0.6);
   backdrop-filter: blur(10px);
   transition: 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .card:hover {
@@ -222,4 +226,102 @@ body::before {
   .card p {
     font-size: 0.75rem;
   }
+}
+
+
+/* hide hamburger on desktop */
+.hamburger {
+  display: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* desktop menu */
+.desktop-menu {
+  display: flex;
+}
+
+/* 📱 mobile menu drawer */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 240px;
+  height: 100vh;
+  background: rgba(15, 20, 35, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.mobile-menu a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+/* 🌑 overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 998;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* 📱 MOBILE RULES */
+@media (max-width: 768px) {
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+section {
+  scroll-margin-top: 100px; /* 👈 prevents anchor overlap */
+}
+
+/* also push content below navbar */
+.hero-wrapper,
+.projects-section {
+  padding-top: 110px;
+}
+
+/*.card h3 {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+} */
+
+.card h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card {
+  min-height: 120px;
 }

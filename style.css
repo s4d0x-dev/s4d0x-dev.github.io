@@ -325,3 +325,111 @@ section {
 .card {
   min-height: 120px;
 }
+
+/* 📢 floating event */
+.event-box {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(40, 128, 48, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text);
+  z-index: 9999;
+
+  animation: slideUp 0.4s ease;
+}
+
+/* content layout */
+
+
+/* text */
+.event-text {
+  font-size: 0.9rem;
+}
+
+.event-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative; /* 👈 needed for absolute positioning */
+}
+
+/* move X to left corner */
+.event-close {
+  position: absolute;
+  left: 10px;   /* 👈 LEFT side */
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.event-close:hover {
+  color: var(--primary);
+}
+
+
+
+/* clickable behavior */
+.event-box {
+  cursor: pointer;
+  transition: 0.25s;
+  padding-left: 35px; /* 👈 space for X */
+}
+
+/* hover effect */
+.event-box:hover {
+  transform: translateY(-3px) scale(1.02);
+  border: 1px solid rgba(79,140,255,0.4);
+}
+
+/* content layout */
+.event-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* title */
+.event-title {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* subtitle */
+.event-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* .event-box {
+  box-shadow: 0 0 20px rgba(79,140,255,0.15);
+} */
+
+
+/* MOBILE------------------------------- */
+/* animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 📱 mobile */
+@media (max-width: 768px) {
+  .event-box {
+    right: 10px;
+    left: 10px;
+    bottom: 15px;
+  }
+}

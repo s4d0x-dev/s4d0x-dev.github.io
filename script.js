@@ -46,6 +46,36 @@ async function loadRepos() {
   render(others, "projects-list", false);
 }
 
+
+
+// show only if not closed before
+// document.addEventListener("DOMContentLoaded", () => {
+//   if (localStorage.getItem("eventClosed") === "true") {
+//     const box = document.getElementById("eventBox");
+//     if (box) box.style.display = "none";
+//   }
+// });
+
+// close event
+// function closeEvent() {
+//   document.getElementById("eventBox").style.display = "none";
+//   localStorage.setItem("eventClosed", "true");
+// }
+
+
+
+// open link when clicking box
+function openEvent() {
+  window.open("https://s4d0x-dev.github.io/tabaar_numa/", "_blank");
+}
+
+// close button (prevent triggering box click)
+function closeEvent(e) {
+  e.stopPropagation(); // 🔥 prevents opening link
+  document.getElementById("eventBox").style.display = "none";
+  localStorage.setItem("eventClosed", "true");
+}
+
 function render(list, containerId, isFeatured) {
   const container = document.getElementById(containerId);
   container.innerHTML = "";

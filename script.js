@@ -1,0 +1,62 @@
+const username = "s4d0x-dev";
+
+function openGitHub() {
+  window.open(`https://github.com/${username}`, "_blank");
+}
+
+function icon(lang) {
+  const map = {
+    JavaScript: "🟨",
+    Python: "🐍",
+    HTML: "🌐",
+    CSS: "🎨",
+    PHP: "🐘"
+  };
+  return map[lang] || "📦";
+}
+
+function repoIcon() {
+  return "📁"; // main repo icon
+}
+
+async function loadRepos() {
+  const res = await fetch(`https://api.github.com/users/${username}/repos`);
+  let repos = await res.json();
+
+  repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+  const featured = repos.slice(0, 3);
+  const others = repos.slice(3, 10);
+
+  render(featured, "featured-list", true);
+  render(others, "projects-list", false);
+}
+
+function render(list, containerId, isFeatured) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+
+  list.forEach(repo => {
+
+    const a = document.createElement("a");
+    a.href = repo.html_url;
+    a.target = "_blank";
+    a.className = "card-link";
+
+    a.innerHTML = `
+      <div class="card ${isFeatured ? "featured-card" : ""}">
+        <h3>
+          ${repoIcon()} ${isFeatured ? "⭐ " : ""}${repo.name}
+        </h3>
+
+        <p>${icon(repo.language)} ${repo.language || "Unknown"}</p>
+
+        <p>${repo.description || ""}</p>
+      </div>
+    `;
+
+    container.appendChild(a);
+  });
+}
+
+loadRepos();

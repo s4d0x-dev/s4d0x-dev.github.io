@@ -171,3 +171,55 @@ body::before {
 .featured-card {
   border: 1px solid rgba(79,140,255,0.25);
 }
+
+@media (max-width: 768px) {
+
+  /* NAV */
+  .nav {
+    width: 95%;
+    padding: 10px 14px;
+  }
+
+  .menu a {
+    margin-right: 10px;
+    font-size: 0.85rem;
+  }
+
+  /* HERO */
+  .hero h1 {
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+
+  /* BUTTON */
+  .btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  /* FEATURED + PROJECTS GRID */
+  .row,
+  .grid {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* CARDS */
+  .card {
+    width: 160px;   /* 🔥 key mobile fix */
+    padding: 10px;
+  }
+
+  .card h3 {
+    font-size: 0.85rem;
+  }
+
+  .card p {
+    font-size: 0.75rem;
+  }
+}

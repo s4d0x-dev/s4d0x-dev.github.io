@@ -1,5 +1,13 @@
 const username = "s4d0x-dev";
 
+const featuredRepos = [
+  "tabaar_numa",
+  "ganjena",
+  "safebox",
+  "keepandroidopen.github.io",
+  "LOCKit_Decryptor"
+];
+
 function openGitHub() {
   window.open(`https://github.com/${username}`, "_blank");
 }
@@ -23,10 +31,8 @@ async function loadRepos() {
   const res = await fetch(`https://api.github.com/users/${username}/repos`);
   let repos = await res.json();
 
-  repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
-
-  const featured = repos.slice(0, 3);
-  const others = repos.slice(3, 10);
+  const featured = repos.filter(r => featuredRepos.includes(r.name));
+  const others = repos.filter(r => !featuredRepos.includes(r.name));
 
   render(featured, "featured-list", true);
   render(others, "projects-list", false);
